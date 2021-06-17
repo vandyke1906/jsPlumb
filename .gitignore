@@ -1,0 +1,19 @@
+#dependencies
+/node_modules
+node_modules/
+.ftpconfig
+/.pnp
+.pnp.js
+.DS_Store
+
+#disable vscode settings
+.vscode
+
+# production
+/build
+frontend/build
+
+# misc
+frontend/.env
+backend/.env
+.DS_Store

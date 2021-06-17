@@ -1,0 +1,52 @@
+#diagram {
+  position: relative;
+  height: 100vh;
+
+  & #control1 {
+    left: 50px;
+    top: 50px;
+  }
+  & #control2 {
+    left: 300px;
+    top: 200px;
+  }
+
+  & .control {
+    position: absolute;
+  }
+
+  .control {
+    border: 1px solid green;
+    border-radius: 10px;
+    cursor: move;
+    width: 150px;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .title {
+    margin-bottom: 10px;
+  }
+
+  .drag,
+  .remove {
+    cursor: pointer;
+  }
+
+  //for connectors and others properly sending to front
+  .window {
+    z-index: 20;
+  }
+
+  .jtk-connector {
+    z-index: 4;
+  }
+
+  .jtk-endpoint {
+    z-index: 5;
+  }
+
+  .jtk-overlay {
+    z-index: 6;
+  }
+}
