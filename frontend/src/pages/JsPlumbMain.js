@@ -252,7 +252,9 @@ const JsPlumbMain = () => {
         <input
           type='text'
           id='endpoint'
+          class='input-blue'
           name='endpoint'
+          placeholder='Endpoint Title'
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />{" "}
@@ -260,13 +262,14 @@ const JsPlumbMain = () => {
         <input
           type='number'
           id='connection'
+          class='input-blue'
           name='connection'
           min='1'
           value={maxValue}
           onChange={(e) => setMaxValue(e.target.value)}
         />{" "}
-        <input type='button' value='Add' onClick={addNewEndPoint} />{" "}
-        <input type='button' value='Reset' onClick={resetAll} />
+        <input type='button' className='button bg-blue' value='Add' onClick={addNewEndPoint} />{" "}
+        <input type='button' className='button  bg-red' value='Reset' onClick={resetAll} />
         <br />
       </div>
       {/* diagram */}
