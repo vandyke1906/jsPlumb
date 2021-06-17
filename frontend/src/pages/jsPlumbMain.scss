@@ -1,6 +1,11 @@
 #diagram {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 100px);
+  height: -webkit-calc(100% - 100px);
+  height: -moz-calc(100% - 100px);
+  border: 1px dotted gray;
+  margin: 20px;
+  padding: 10px;
 
   & #control1 {
     left: 50px;
@@ -16,7 +21,8 @@
   }
 
   .control {
-    border: 1px solid green;
+    background-color: #d1e1fc;
+    border: 1px solid #042e99;
     border-radius: 10px;
     cursor: move;
     width: 150px;
@@ -26,10 +32,23 @@
 
   .title {
     margin-bottom: 10px;
+    font-weight: 700;
   }
 
   .drag,
   .remove {
+    cursor: pointer;
+  }
+
+  .btn-link {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: none;
     cursor: pointer;
   }
 

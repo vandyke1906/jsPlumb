@@ -2,13 +2,6 @@ import { jsPlumb } from "jsplumb";
 
 class JsPlumb {
   constructor(containerId) {
-    // //if already created instance - dont created again instead call previous instance #for singleton
-    // if (JsPlumb.instance instanceof JsPlumb) {
-    //   return JsPlumb.instance;
-    // }
-    // Object.freeze(this); //cant modified the instance that created #for singleton
-    // JsPlumb.instance = this; //global - key #for singleton
-
     this.jsPlumbObject = {
       jsPlumbInstance: null,
     };
@@ -44,29 +37,47 @@ class JsPlumb {
     this.jsPlumbObject[key] = value;
   }
 
-  // /**
-  //  *
-  //  * @param {String} containerId
-  //  */
-  // getContainer(containerId) {
-  //   this.get("jsPlumbInstance").getContainer(containerId);
+  /**
+   *
+   * @param {String} containerId
+   */
+  getContainer(containerId) {
+    this.get("jsPlumbInstance").getContainer(containerId);
+  }
+
+  /**
+   *
+   * @param {String} elementId
+   * @param {Boolean} containment
+   */
+  setElementDraggable(elementId) {
+    this.get("jsPlumbInstance").draggable(elementId, { containment: true });
+  }
+
+  /**
+   *
+   * @param {String} elementId
+   * returns current draggable state
+   */
+  toggleElementDraggable(elementId) {
+    return this.get("jsPlumbInstance").toggleDraggable(elementId);
+  }
+
+  // setEndPointOptions(elementId, endPointOptions = {}) {
+  //   return this.get("jsPlumbInstance").addEndpoint(elementId, endPointOptions);
   // }
 
   /**
    *
-   * @param {String} controllerId
-   * @param {Boolean} containment
+   * @param {String} elementId
+   * returns current draggable state
    */
-  setControllerDraggable(controllerId, containment = true) {
-    this.get("jsPlumbInstance").draggable(controllerId, { containment: containment });
+  addEndPoint(elementId, endPointOptions = {}) {
+    return this.get("jsPlumbInstance").addEndpoint(elementId, endPointOptions);
   }
 
-  setEndPointOptions(controllerId, endPointOptions = {}) {
-    this.get("jsPlumbInstance").addEndpoint(controllerId, endPointOptions);
-  }
-
-  addEndPoint(controllerId, endPointOptions = {}) {
-    this.get("jsPlumbInstance").addEndpoint(controllerId, endPointOptions);
+  removeAllEnpoints(elementId) {
+    this.get("jsPlumbInstance").removeAllEndpoints(elementId);
   }
 }
 
