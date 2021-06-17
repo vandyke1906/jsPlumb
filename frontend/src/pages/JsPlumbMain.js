@@ -140,7 +140,15 @@ const JsPlumbMain = () => {
     const divDragContent = `Toggle Draggable`;
     const divDrag = createElement("button", divDragContent, null, "drag");
     divDrag.className = "btn-link";
-    divDrag.onclick = () => currentJsPlumbInstance.toggleDraggable(elementId);
+    divDrag.onclick = () => {
+      const setDraggable = currentJsPlumbInstance.toggleDraggable(elementId);
+      const currentElement = document.getElementById(elementId);
+      currentElement.classList.remove("not_draggable");
+      if (setDraggable) currentElement.classList.add("draggable");
+      else {
+        currentElement.classList.add("not_draggable");
+      }
+    };
 
     const divRemoveConnection = createElement("button", "Remove Connection", null, "remove");
     divRemoveConnection.className = "btn-link";
@@ -171,6 +179,7 @@ const JsPlumbMain = () => {
     addJsPlumbEndPoint(currentJsPlumbInstance, elementId, maxConnection, parameters);
     currentJsPlumbInstance.draggable(elementId, { containment: true });
     /* for js plumb */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endPoints]);
 
   // useEffect(() => {
