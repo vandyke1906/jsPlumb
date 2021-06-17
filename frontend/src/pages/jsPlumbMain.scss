@@ -2,12 +2,14 @@
   margin: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
     "Helvetica Neue", sans-serif;
+  text-align: right;
 
-  & input[type="text"] {
+  & > input[type="text"] {
     padding: 8px;
     border: none;
     border-bottom: 1px solid #ccc;
   }
+
   & input[type="number"] {
     padding: 8px;
     border: none;
@@ -47,12 +49,13 @@
     margin-left: 5px;
   }
 }
+
 #diagram {
   position: relative;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 120px);
   height: -webkit-calc(100% - 100px);
   height: -moz-calc(100% - 100px);
-  border: 1px dotted gray;
+  border: 2px dotted gray;
   margin: 20px;
   padding: 10px;
 

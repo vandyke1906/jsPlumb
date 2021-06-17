@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { jsPlumb } from "jsplumb";
 import classJsPlumb from "utils/jsplumb";
 
-//css
+//scss
 import "./jsPlumbMain.scss";
 
 const JsPlumbMain = () => {
@@ -74,7 +74,7 @@ const JsPlumbMain = () => {
     instance.registerConnectionTypes({
       "connector-style": {
         paintStyle: { stroke: "gray", strokeWidth: 2 },
-        hoverPaintStyle: { stroke: "gray", strokeWidth: 5 },
+        hoverPaintStyle: { stroke: "#f44336", strokeWidth: 5 },
       },
     });
     setCurrentJsPlumbInstance(instance);
@@ -87,7 +87,7 @@ const JsPlumbMain = () => {
   useEffect(() => {
     if (currentJsPlumbInstance) {
       currentJsPlumbInstance.bind("connection", function (params) {
-        // console.log("params connection", params.connection);
+        // console.log("params connection", params);
         // console.log(params.connection.getParameters());
         const parameters = params.connection.getParameters();
         for (let p in parameters) {
@@ -252,9 +252,9 @@ const JsPlumbMain = () => {
         <input
           type='text'
           id='endpoint'
-          class='input-blue'
+          className='input-blue'
           name='endpoint'
-          placeholder='Endpoint Title'
+          placeholder='Endpoint name'
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />{" "}
@@ -262,13 +262,19 @@ const JsPlumbMain = () => {
         <input
           type='number'
           id='connection'
-          class='input-blue'
+          className='input-blue'
           name='connection'
           min='1'
           value={maxValue}
           onChange={(e) => setMaxValue(e.target.value)}
         />{" "}
-        <input type='button' className='button bg-blue' value='Add' onClick={addNewEndPoint} />{" "}
+        <input
+          type='button'
+          className='button bg-blue'
+          value='Add'
+          placeholder='Endpoint name...'
+          onClick={addNewEndPoint}
+        />{" "}
         <input type='button' className='button  bg-red' value='Reset' onClick={resetAll} />
         <br />
       </div>
