@@ -17,3 +17,4 @@ frontend/build
 frontend/.env
 backend/.env
 .DS_Store
+notes.txt
