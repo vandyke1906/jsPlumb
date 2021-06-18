@@ -17,58 +17,9 @@ const JsPlumbMain = () => {
   const currentLeft = useRef(10);
   const countControls = useRef(1);
 
-  // let currentTop,
-  //   currentLeft = 50;
-  // let countControls = 0;
-
-  // .repaintEverything();
-
-  // useEffect(() => {
-  //   let instance = jsPlumb.getInstance();
-  //   setFirstInstance(instance);
-  //   firstInstance.getContainer("diagram");
-
-  //   //draggable controllers
-  //   firstInstance.draggable(["control1", "control2"], { containment: true });
-  //   // firstInstance.draggable("control2", { containment: true });
-
-  //   //first endpoint
-  //   firstInstance.addEndpoint("control1", {
-  //     endpoint: "Dot",
-  //     anchor: "BottomCenter",
-  //     isTarget: true,
-  //     isSource: true,
-  //     parameters: {
-  //       p1: "parameter 1 in controller 1",
-  //       p2: "parameter 2 in controller 1",
-  //       p3: function () {
-  //         console.log("i am p3");
-  //       },
-  //     },
-  //   });
-  //   //second endpoint
-  //   firstInstance.addEndpoint("control2", {
-  //     endpoint: "Dot",
-  //     anchor: "BottomCenter",
-  //     isTarget: true,
-  //     isSource: true,
-  //     parameters: {
-  //       p4: "parameter 2 in controller 2",
-  //       p5: function () {
-  //         console.log("i am p3 in controller 2");
-  //       },
-  //     },
-  //   });
-
-  //   firstInstance.bind("connection", function (params) {
-  //     console.log("params connection", params.connection.getParameters());
-  //   });
-  //   // }); //bind ready
-  // }, []);
-
   useEffect(() => {
     const containerId = document.getElementById("diagram");
-    // jsPlumb.setContainer(containerId);
+
     setParentContainer(containerId);
     const instance = jsPlumb.getInstance({ Container: "diagram" });
     instance.registerConnectionTypes({
@@ -87,20 +38,11 @@ const JsPlumbMain = () => {
   useEffect(() => {
     if (currentJsPlumbInstance) {
       currentJsPlumbInstance.bind("connection", function (params) {
-        // console.log("params connection", params);
-        // console.log(params.connection.getParameters());
         const parameters = params.connection.getParameters();
         for (let p in parameters) {
-          // console.log(p);
           if (p.includes("info")) parameters[p]();
         }
       });
-
-      // currentJsPlumbInstance.bind("click", function (component, event) {
-      //   if (component.hasClass("jtk-connector")) {
-      //     console.log(component);
-      //   }
-      // });
     }
   }, [currentJsPlumbInstance]);
 
@@ -108,8 +50,6 @@ const JsPlumbMain = () => {
     if (Object.entries(currentEndPoint).length === 0) return;
     const { elementId, controlName, maxConnection } = currentEndPoint;
     const divControl = createElement("div", null, elementId, "control");
-    // divControl.style.top = `${Math.round(Math.random() * 600)}px`;
-    // divControl.style.left = `${Math.round(Math.random() * 400)}px`;
 
     divControl.style.top = `${currentTop.current}px`;
     divControl.style.left = `${currentLeft.current}px`;
@@ -178,20 +118,12 @@ const JsPlumbMain = () => {
 
     addJsPlumbEndPoint(currentJsPlumbInstance, elementId, maxConnection, parameters);
     currentJsPlumbInstance.draggable(elementId, { containment: true });
-    /* for js plumb */
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endPoints]);
-
-  // useEffect(() => {
-  //   currentJsPlumbInstance?.draggable(draggableElements, { containment: true });
-  //   console.log("draggableElements", draggableElements);
-  // }, [draggableElements]);
 
   const setCurrentEP = (elementId) => {
     let currentEP = null;
     if (elementId) currentEP = endPoints.find((ep) => ep.elementId === elementId);
     setCurrentEndPoint(currentEP);
-    // console.log("set current ep", currentEP);
   };
 
   const addJsPlumbEndPoint = (jsPlumbInstance, elementId, maxConnections = 1, parameters = {}) => {
@@ -279,19 +211,7 @@ const JsPlumbMain = () => {
         <br />
       </div>
       {/* diagram */}
-      <div id='diagram'>
-        {/* <div id='control1' className='control'>
-          <div className='title'>Control 1</div>
-          <div className='drag'>Test Dragging</div>
-          <div className='remove'>Remove Connection</div>
-        </div> */}
-        {/*
-        <div id='control2' className='control'>
-          <div className='title'>Control 2</div>
-          <div className='drag'>{!isDraggable("control2") ? "Enable" : "Disable"} Dragging</div>
-          <div className='remove'>Remove Connection</div>
-        </div> */}
-      </div>
+      <div id='diagram'></div>
     </div>
   );
 };

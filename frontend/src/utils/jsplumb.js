@@ -63,10 +63,6 @@ class JsPlumb {
     return this.get("jsPlumbInstance").toggleDraggable(elementId);
   }
 
-  // setEndPointOptions(elementId, endPointOptions = {}) {
-  //   return this.get("jsPlumbInstance").addEndpoint(elementId, endPointOptions);
-  // }
-
   /**
    *
    * @param {String} elementId
