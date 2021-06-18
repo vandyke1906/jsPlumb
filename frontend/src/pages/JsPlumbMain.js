@@ -167,6 +167,10 @@ const JsPlumbMain = () => {
     currentJsPlumbInstance.reset();
     const diagramElement = document.getElementById("diagram");
     diagramElement.innerHTML = "";
+
+    currentTop.current = 50;
+    currentLeft.current = 50;
+    countControls.current = 1;
   };
 
   const createElement = (type, content, id, classText) => {
